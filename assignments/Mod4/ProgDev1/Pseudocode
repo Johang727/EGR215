@@ -1,0 +1,45 @@
+Write a program that will create a moving average plot of the NASA global temperature anomaly data for a user specified moving average window. 
+
+The user will specify a window size that should be an odd number of years. 
+
+The program should calculate the required moving average for as many years in the data as possible and then create a plot of the annual data, shown with data symbols, and the moving average, shown as a solid line.
+
+PROGRAM plot_temp_anomaly
+    Load Data from TXT
+
+    get minimum and maximum years possible for range
+
+    WHILE not exit DO
+        Get start year from user
+        Get end year from user
+
+        IF end year - start year % 2 == 0 THEN
+            // the input is even, restart
+            print "Enter an odd time interval"
+            continue
+        ENDIF
+
+        IF end year - start year < 0 THEN
+            // invalid year range, restart
+            print "Enter a valid range"
+            continue
+        ENDIF
+
+        IF start year < min year OR end year > max year THEN
+            // invalid year range, restart
+            print "Enter a valid range"
+            continue
+        exit = true
+    ENDWHILE
+
+    FOR range start year to end year
+        Plot Value
+    ENDFOR
+
+    Plot average line for whole graph
+
+ENDPROGRAM
+
+
+
+
