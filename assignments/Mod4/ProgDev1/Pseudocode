@@ -10,31 +10,32 @@ PROGRAM plot_temp_anomaly
     get minimum and maximum years possible for range
 
     WHILE not exit DO
-        Get start year from user
-        Get end year from user
+        Get interval to calculate moving average
 
-        IF end year - start year % 2 == 0 THEN
+        Check if integer
+
+        IF interval % 2 == 0 THEN
             // the input is even, restart
-            print "Enter an odd time interval"
+            print "Enter an odd year interval."
             continue
         ENDIF
 
-        IF end year - start year < 0 THEN
-            // invalid year range, restart
-            print "Enter a valid range"
+        IF interval is negative THEN
+            print "Enter a positive number."
             continue
-        ENDIF
+        
+        IF interval > max year - min year THEN
+            print "Time interval too big, please enter a smaller one."
+            continue
 
-        IF start year < min year OR end year > max year THEN
-            // invalid year range, restart
-            print "Enter a valid range"
-            continue
         exit = true
     ENDWHILE
 
-    FOR range start year to end year
-        Plot Value
+    FOR range start year to end year, increase by interval
+        log values
     ENDFOR
+
+    FOR 
 
     Plot average line for whole graph
 
