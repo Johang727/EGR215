@@ -4,40 +4,62 @@ The user will specify a window size that should be an odd number of years.
 
 The program should calculate the required moving average for as many years in the data as possible and then create a plot of the annual data, shown with data symbols, and the moving average, shown as a solid line.
 
-PROGRAM plot_temp_anomaly
-    Load Data from TXT
 
-    get minimum and maximum years possible for range
 
-    WHILE not exit DO
-        Get interval to calculate moving average
+PROGRAM plot_temp_anomaly_moving_average
+    Load anomaly data from TXT file
+    Extract year column and annual temperature anomaly column
+    Divide annual temperature anomalies by 100 for actual values
+    Get minimum and maximum years possible for range
 
-        Check if integer
+    WHILE true DO
+        Get window size interval from user to calculate moving average
+
+        Check if interval is an integer
+        IF not integer THEN
+            print "Please enter an integer."
+            return to start
+        ENDIF
 
         IF interval % 2 == 0 THEN
             // the input is even, restart
-            print "Enter an odd year interval."
-            continue
+            print "Enter an odd year window size."
+            return to start
         ENDIF
 
-        IF interval is negative THEN
-            print "Enter a positive number."
-            continue
-        
-        IF interval > max year - min year THEN
-            print "Time interval too big, please enter a smaller one."
-            continue
+        IF interval < 2 THEN
+            print "Enter a window size greater than 1."
+            return to start
+        ENDIF
 
-        exit = true
+        IF interval > (max year - min year) - 1 THEN
+            print "Window size is too big. Please enter a smaller value."
+            return to start
+        ENDIF
+
+        break
     ENDWHILE
 
-    FOR range start year to end year, increase by interval
-        log values
+    Calculate interval slice as integer division of interval by 2
+    Calculate the first and last years for the moving average calculation
+    Find the start and end indices for those years in the dataset
+
+    Create empty arrays for the moving average years and moving average anomalies
+
+    moving year index = 0
+    FOR year index from start index to end index
+        Obtain the subset of temperature anomalies surrounding the current year
+        Calculate the mean of this anomaly subset
+        
+        Log the current year into the moving years array
+        Log the calculated mean into the moving anomalies array
+        
+        Increase moving year index by 1
     ENDFOR
 
-    FOR 
-
-    Plot average line for whole graph
+    Plot moving average anomalies against the moving years array
+    Set X-axis label, Y-axis label, and Title
+    Display the plot
 
 ENDPROGRAM
 
