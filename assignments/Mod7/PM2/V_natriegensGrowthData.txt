@@ -1,0 +1,1 @@
+Vibrio natriegens		http://mathinsight.org/bacteria_growth_logistic_model				t [min]	n	OD0	0	0.02216	1	0.03632	2	0.0648	3	0.10164	4	0.16980	5	0.26696	6	0.36112	7	0.51128	8	0.704144	9	0.827160	10	0.928
